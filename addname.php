@@ -21,7 +21,6 @@ $stmt = $conn->prepare("INSERT INTO names (name, lastname, email) VALUES (:name,
 $stmt->bindParam(':name', $naam);
 $stmt->bindParam(':lname', $achternaam);
 $stmt->bindParam(':email', $email);
-
 $stmt->execute();
 
 echo "<a href='index.php'>Terug naar index.</a>";
