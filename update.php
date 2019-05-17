@@ -13,13 +13,13 @@ catch(PDOException $e)
     echo "Connection failed: " . $e->getMessage();
     }
 
-$oldnaam = $_POST["oldname"];
+$updateid = $_POST["updateid"];
 
 $naam = $_POST["newname"];
 $achternaam = $_POST["newlname"];
 $email = $_POST["newemail"];
 
-$stmt = $conn->prepare("UPDATE names SET name='$naam', lastname='$achternaam', email='$email' WHERE name='$oldnaam'");
+$stmt = $conn->prepare("UPDATE names SET name='$naam', lastname='$achternaam', email='$email' WHERE id='$updateid'");
 if ($stmt->execute()) { 
     echo "succes";
  } else {
