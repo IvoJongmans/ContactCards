@@ -8,23 +8,31 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
      $(document).ready(function(){   
+        
+
 
         $.ajax({
             type: 'GET',
             url: 'contacts.php', 
-            success: verwerk
-        })
-
-     });   
-
- 
- var verwerk = function(data) {
-    console.log("test");
-}
+            success:function(data) {
+               $(data.names).each(function(index, element) {
+                   console.log(element); 
+                   $("#list").append(`<li id="${element.id}">${element.name} ${element.lastname}</li>`);                 
+               });
+            }
+        });
+     }); 
+     
     </script>
 </head>
 <body>
     <h1>SHOW</h1>
+    
+
+    <ul id="list">
+    
+    </ul>  
+
 </body>
 </html>
 
