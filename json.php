@@ -34,10 +34,14 @@ while($row = $run->fetch(PDO::FETCH_ASSOC)) {
     $fetch['names'][] = $row;
 }
 
-echo json_encode($fetch);
 
 
 ?>
+
+<script type="text/javascript">
+var ar = <?php echo json_encode($fetch) ?>;
+console.log(ar);
+</script>
     
 </body>
 </html>
