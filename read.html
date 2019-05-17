@@ -13,7 +13,7 @@
 
         $.ajax({
             type: 'GET',
-            url: 'contacts.php', 
+            url: 'read.php', 
             success:function(data) {
                $(data.names).each(function(index, element) {
                    console.log(element); 
