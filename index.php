@@ -25,4 +25,4 @@ catch(PDOException $e)
 
 ?>
 
-<a href="voegtoe.html">Voeg namen toe</a>
+<a href="create.html">Voeg namen toe</a>

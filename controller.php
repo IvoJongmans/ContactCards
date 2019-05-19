@@ -1,4 +1,14 @@
-<?php ?>
+<?php 
+
+
+    $contacts_url = 'read.php';
+
+    $contacts_json = file_get_contents($contacts_url);
+    $contact_array = json_decode($contacts_json, true);
+    echo $contact_array;
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +18,9 @@
     <title>Controller</title>
 </head>
 <body>
-    
+    <form action="">
+        <input type="text" name="name">
+        <button type="submit">Search</button>
+    </form>
 </body>
 </html>
