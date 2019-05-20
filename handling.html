@@ -9,16 +9,20 @@
     <title>Document</title>
     <script>
     $(document).ready(function(){  
-
         
         $.getJSON("http://localhost/MariaDB-with-PHP---PDO-Version/handling.php?formmethod=GET&id=", function(data){
          console.log(data);
          console.log(data[0].name);
         $.each(data, function(index,value){            
-            $("#myUl").append("<li id='"+ index + "'>" + value.name + " ID: " + value.id + "<button><a href='http://localhost/MariaDB-with-PHP---PDO-Version/handling.php?formmethod=DELETE&id=" + value.id + "'>DELETE</a></button></li>");
+            $("#myUl").append("<li id='index" + value.id + "'>" + value.name + " ID: " + 
+            value.id + "<button id='" + value.id + "'>DELETE</button></li>");
+             });
+        });  
+        $(document).on('click','button',function(){
+            let btnid = this.id;
+            let delurl = "http://localhost/MariaDB-with-PHP---PDO-Version/handling.php?formmethod=DELETE&id=" + btnid;
+            console.log(delurl);
         });
-        });
-    
     });   
 
     </script>
@@ -51,9 +55,11 @@
             <button type="submit">DELETE</button>
         </form>
 
+        <!-- <a href='http://localhost/MariaDB-with-PHP---PDO-Version/handling.php?formmethod=DELETE&id=" +
+            value.id + "'></a> -->
+
         
     
 </body>
 </html>
-
 
