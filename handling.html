@@ -22,6 +22,16 @@
             let btnid = this.id;
             let delurl = "http://localhost/MariaDB-with-PHP---PDO-Version/handling.php?formmethod=DELETE&id=" + btnid;
             console.log(delurl);
+            $.ajax({
+            url: delurl,
+            type: "DELETE",
+            success: function(){
+            alert('success');
+            },
+            error: function(){
+            alert('failure');
+            }
+            });
         });
     });   
 
@@ -54,11 +64,7 @@
             <input type="text" name="id" placeholder="ID om te verwijderen">         
             <button type="submit">DELETE</button>
         </form>
-
-        <!-- <a href='http://localhost/MariaDB-with-PHP---PDO-Version/handling.php?formmethod=DELETE&id=" +
-            value.id + "'></a> -->
-
-        
+   
     
 </body>
 </html>
