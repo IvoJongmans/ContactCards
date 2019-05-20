@@ -4,7 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>Document</title>
+    <script>
+    $(document).ready(function(){  
+
+        $.getJSON('http://localhost/MariaDB-with-PHP---PDO-Version/handling.php?formmethod=DELETE&id=8', function(data) {
+        });
+    });   
+    </script>
 </head>
 <body>
 
@@ -24,6 +32,11 @@
             <input type="text" name="email" placeholder="Update e-mailadres">                
             <input type="text" name="id" placeholder="ID om te updaten">                
             <button type="submit">UPDATE</button>
+        </form>
+        <form action="handling.php" method="get">
+            <input type="hidden" name="formmethod" value="DELETE">  
+            <input type="text" name="id" placeholder="ID om te verwijderen">         
+            <button type="submit">DELETE</button>
         </form>
 
         

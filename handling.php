@@ -72,4 +72,12 @@ elseif ($_GET['formmethod'] == "CREATE") {
     echo json_encode($fetch); 
     }
 
+    elseif ($_GET['formmethod'] == "DELETE") {
+      $delrec = $_GET['id'];
+      $sql = "DELETE FROM names WHERE id='$delrec'";
+      $create = $conn->prepare($sql);
+      $create->execute();
+      echo "Item succesvol verwijderd";
+    }
+
 ?>
