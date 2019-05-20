@@ -19,6 +19,7 @@ catch(PDOException $e)
     foreach ($data as $row) {
         echo $row['name']." ";
         echo $row['lastname']." ";
+        echo $row['id']." ";
         echo $row['email']."<br />\n";
     }
 

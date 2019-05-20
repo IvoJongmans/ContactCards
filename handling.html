@@ -9,15 +9,16 @@
 <body>
 
         <form action="handling.php" method="get">
+            <input type="hidden" name="formmethod" value="CREATE">              
+            <button type="submit">CREATE</button>
+        </form>
+        <form action="handling.php" method="get">
+            <input type="hidden" name="formmethod" value="GET">
+            <input type="text" name="id">                
+            <button type="submit">READ</button>
+        </form>
 
-                <input type="text" method="get" name="getmethod">
-                <button type="submit">GET name</button>
-            </form>
-        <form action="request.php" method="get">
-
-                <input type="text" method="get" name="getmethod">
-                <button type="submit">GET name</button>
-            </form>
+        
     
 </body>
 </html>

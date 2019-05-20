@@ -1,8 +1,6 @@
 <?php
-
+header('Content-type: application/json; charset=utf-8');
 require_once "login.php";
-
-$fname = $_GET["getmethod"];
 
 try {
     $conn = new PDO("mysql:host=$hn;dbname=$db", $un, $pw);
@@ -14,17 +12,39 @@ catch(PDOException $e)
       echo "Connection failed: " . $e->getMessage();
     }
 
-if($_SERVER["REQUEST_METHOD"] == "GET") {
-
-$sql = "SELECT * FROM names WHERE name='$fname'";
-
-$data = $conn->query($sql)->fetchAll();
-
-foreach ($data as $row) {
-    echo "Naam: ".$row['name']."<br />\n";
-    echo "Achternaam: ".$row['lastname']."<br />\n";
-    echo "ID: ".$row['id']."<br />\n";
-    echo "E-mail: ".$row['email']."<br />\n";
-    }
+if(($_GET['id'] == "") && ($_GET['formmethod'] == "GET")) {
+  $sql = "SELECT * FROM names";
+  $run = $conn->prepare($sql);
+  $run->execute();
+  $fetch = array();
+  while($row = $run->fetch(PDO::FETCH_ASSOC)) {
+    $fetch['names'][] = $row;
+  }
+  echo json_encode($fetch);
 }
+elseif ((isset($_GET['id'])) && ($_GET['formmethod'] == "GET")) {
+
+  $id = $_GET['id'];
+  $sql = "SELECT * FROM names WHERE id='$id'";
+  $run = $conn->prepare($sql);
+  $run->execute();
+  $rowcount = $run->rowCount();
+  $fetch = array();
+
+  if($rowcount < 1) {
+    echo "Dit ID bestaat niet.";
+  }
+  else {
+    while($row = $run->fetch(PDO::FETCH_ASSOC)) {
+      $fetch['names'][] = $row;
+    }
+    echo json_encode($fetch);
+  }
+}
+
+if ($_GET['formmethod'] == "CREATE") {
+  echo "YOLO";
+}
+
+
 ?>
