@@ -46,6 +46,14 @@ if ($_GET['formmethod'] == "CREATE") {
   $sql = "INSERT INTO names (name, lastname, email) VALUES ('', '', '')";
   $create = $conn->prepare($sql);
   $create->execute();
+  $sqlcreateshow = "SELECT * FROM names ORDER BY id DESC LIMIT 1";
+  $showcreate = $conn->prepare($sqlcreateshow);
+  $showcreate->execute();
+  while($row = $showcreate->fetch(PDO::FETCH_ASSOC)) {
+    $fetch['names'][] = $row;
+  }
+  echo json_encode($fetch);
+  
   }
 
 
