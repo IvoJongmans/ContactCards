@@ -43,8 +43,10 @@ elseif ((isset($_GET['id'])) && ($_GET['formmethod'] == "GET")) {
 }
 
 if ($_GET['formmethod'] == "CREATE") {
-  echo "YOLO";
-}
+  $sql = "INSERT INTO names (name, lastname, email) VALUES ('', '', '')";
+  $create = $conn->prepare($sql);
+  $create->execute();
+  }
 
 
 ?>
