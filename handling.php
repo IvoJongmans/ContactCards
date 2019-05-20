@@ -42,7 +42,7 @@ elseif ((isset($_GET['id'])) && ($_GET['formmethod'] == "GET")) {
   }
 }
 
-if ($_GET['formmethod'] == "CREATE") {
+elseif ($_GET['formmethod'] == "CREATE") {
   $sql = "INSERT INTO names (name, lastname, email) VALUES ('', '', '')";
   $create = $conn->prepare($sql);
   $create->execute();
@@ -52,9 +52,24 @@ if ($_GET['formmethod'] == "CREATE") {
   while($row = $showcreate->fetch(PDO::FETCH_ASSOC)) {
     $fetch['names'][] = $row;
   }
-  echo json_encode($fetch);
-  
+  echo json_encode($fetch);  
   }
 
+  elseif ($_GET['formmethod'] == "UPDATE") {
+    $updateid = $_GET["id"];
+    $naam = $_GET["naam"];
+    $achternaam = $_GET["achternaam"];
+    $email = $_GET["email"];
+    $sql = "UPDATE names SET name='$naam', lastname='$achternaam', email='$email' WHERE id='$updateid'";
+    $update = $conn->prepare($sql);
+    $update->execute();
+    $sqlupdateshow = "SELECT * FROM names WHERE id='$updateid'";
+    $showupdate = $conn->prepare($sqlupdateshow);
+    $showupdate->execute();
+    while($row = $showupdate->fetch(PDO::FETCH_ASSOC)) {
+      $fetch['names'][] = $row;
+    }
+    echo json_encode($fetch); 
+    }
 
 ?>
