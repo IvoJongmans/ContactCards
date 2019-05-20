@@ -14,8 +14,8 @@
         $.getJSON("http://localhost/MariaDB-with-PHP---PDO-Version/handling.php?formmethod=GET&id=", function(data){
          console.log(data);
          console.log(data[0].name);
-        $.each(data, function(index,value){
-            $("#myUl").append("<li>"+ value.name +"</li>");
+        $.each(data, function(index,value){            
+            $("#myUl").append("<li id='"+ index + "'>" + value.name + " ID: " + value.id + "<button><a href='http://localhost/MariaDB-with-PHP---PDO-Version/handling.php?formmethod=DELETE&id=" + value.id + "'>DELETE</a></button></li>");
         });
         });
     
