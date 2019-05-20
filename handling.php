@@ -18,7 +18,7 @@ if(($_GET['id'] == "") && ($_GET['formmethod'] == "GET")) {
   $run->execute();
   $fetch = array();
   while($row = $run->fetch(PDO::FETCH_ASSOC)) {
-    $fetch['names'][] = $row;
+    $fetch[] = $row;
   }
   echo json_encode($fetch);
 }
@@ -36,7 +36,7 @@ elseif ((isset($_GET['id'])) && ($_GET['formmethod'] == "GET")) {
   }
   else {
     while($row = $run->fetch(PDO::FETCH_ASSOC)) {
-      $fetch['names'][] = $row;
+      $fetch['names'] = $row;
     }
     echo json_encode($fetch);
   }
@@ -50,7 +50,7 @@ elseif ($_GET['formmethod'] == "CREATE") {
   $showcreate = $conn->prepare($sqlcreateshow);
   $showcreate->execute();
   while($row = $showcreate->fetch(PDO::FETCH_ASSOC)) {
-    $fetch['names'][] = $row;
+    $fetch['names'] = $row;
   }
   echo json_encode($fetch);  
   }
@@ -67,7 +67,7 @@ elseif ($_GET['formmethod'] == "CREATE") {
     $showupdate = $conn->prepare($sqlupdateshow);
     $showupdate->execute();
     while($row = $showupdate->fetch(PDO::FETCH_ASSOC)) {
-      $fetch['names'][] = $row;
+      $fetch['names'] = $row;
     }
     echo json_encode($fetch); 
     }

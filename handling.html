@@ -12,9 +12,11 @@
 
         
         $.getJSON("http://localhost/MariaDB-with-PHP---PDO-Version/handling.php?formmethod=GET&id=", function(data){
-            console.log(data);
-         console.log(data.names[1].lastname);
-
+         console.log(data);
+         console.log(data[0].name);
+        $.each(data, function(index,value){
+            $("#myUl").append("<li>"+ value.name +"</li>");
+        });
         });
     
     });   
