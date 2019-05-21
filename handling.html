@@ -47,8 +47,7 @@
                 }   
             });
             }
-            else if((btnid == this.id)&&(this.className == "save")){
-                console.log("test");         
+            else if((btnid == this.id)&&(this.className == "save")){        
                 let indexid = this.id;
                 console.log(indexid);
                 let naam = $("#inputname" + indexid).val();
@@ -65,10 +64,11 @@
                 $(".index" + indexid).replaceWith("<div class='index" + indexid + "'>" + "Voornaam: " + naam + "<br/>Achternaam: " + achternaam + "<br/>E-mail: " + email + "<br/> <span>ID: " + 
                 indexid + "</span><br/><button id='" + indexid + "'>DELETE</button></div>");
                 $("#succes").html("Item succesvol opgeslagen!");
-            }});
-
-
-                         
+            }});                         
+            }
+            else if(this.className == "searchbutton"){
+                let searchfor = $("#searchinput").val();    
+                          
             }
             else{
             // let btnid = this.id;
@@ -96,7 +96,12 @@
     </script>
 </head>
 <body>
+    <div id="functioncontainer">
         <button id="create" class="createbutton"><img src="createicon.png" alt="plusicon"></button>
+        <input id="searchinput" type="text" name="searchbar" placeholder="Under construction">
+        <button type="button" id="search" class="searchbutton">ZOEK!</button>
+    </div>
+
 
         <div class="flexcontainer">
 

@@ -12,6 +12,10 @@ body {
 	outline: inherit;
 }
 
+.functioncontainer {
+    display: flex;
+}
+
 .save {
     background: none;
 	color: inherit;
