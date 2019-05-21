@@ -35,9 +35,11 @@
                     console.log(data);
                     $.each(data, function(index,value){            
                     $(".flexcontainer").append("<div class='index" + value.id +
-                     "'><input type='text' name='naam' placeholder='Update naam'><br/><input type='text' name='achternaam' placeholder='Update achternaam'><br/><input type='text' name='email' placeholder='Update e-mailadres'><input type='hidden' name='id' value='" + value.id + "'>" 
-                     + "<br/> ID: " + 
-                    value.id + "<br/><button id='save'>Opslaan<br/><button id='" + value.id + "'>DELETE</button></div>");
+                     "'><input id='inputname" + value.id + "'" + "type='text' name='naam' placeholder='Update naam'><br/><input type='text' name='achternaam' placeholder='Update achternaam'><br/><input type='text' name='email' placeholder='Update e-mailadres'><input type='hidden' name='id' value='" + value.id + "'>" 
+                     + "<br/> <span>ID: " + 
+                    value.id + "</span><br/><button id='save' class='" + value.id + "'>Opslaan<br/><button id='" + value.id + "'>DELETE</button></div>");
+                    var uniqueUD = value.id;
+                    return uniqueUD;
              });
             },
                 error: function(r, e){
@@ -46,8 +48,13 @@
             });
             }
             else if(btnid == "save"){
-                console.log("Save!");
-
+                console.log("test");
+         
+                let indexid = this.className;
+                console.log(indexid);
+                // let id = indexid.substring(5 , 8);
+                let naam = $("#inputname" + indexid).val();
+                console.log(naam);                
             }
             else{
             // let btnid = this.id;
