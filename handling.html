@@ -26,7 +26,12 @@
                 url: delurl, 
                 async: true, 
                 success: function(result){
-                console.log(result);
+                if(result == 1){
+                    $("#succes").append("Item succesvol verwijderd uit database!");
+                }
+                else{
+                    $("#erro").append("Item niet succesvol verwijderd uit database!");
+                }
             }});
         });
     });   
@@ -60,6 +65,13 @@
             <input type="text" name="id" placeholder="ID om te verwijderen">         
             <button type="submit">DELETE</button>
         </form>
+
+        <div id="error">
+            
+        </div>
+        <div id="succes">
+            
+        </div>
    
     
 </body>
