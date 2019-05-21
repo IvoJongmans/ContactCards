@@ -32,9 +32,13 @@ body {
 	outline: inherit;
 }
 
+span {
+    display: none;
+}
+
 input[type=text] {
     background-color: white;
-    color: white;
+    color: #17242A;
     font-family: 'Roboto', sans-serif;
     border-radius: 3px;
     border: none;
