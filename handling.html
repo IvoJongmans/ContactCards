@@ -67,8 +67,16 @@
             }});                         
             }
             else if(this.className == "searchbutton"){
-                let searchfor = $("#searchinput").val();    
-                          
+                let searchfor = $("#searchinput").val(); 
+                let searchurl = "http://localhost/MariaDB-with-PHP---PDO-Version/handling.php?formmethod=GET&id=" + searchfor + "&name=" + searchfor + "&lastname=" + searchfor + "&email=" + searchfor;  
+                console.log(searchurl);
+                $.ajax({
+                type: "GET",
+                url: searchurl, 
+                async: true, 
+                success: function(data){
+                    console.log(data, "succes!");
+                }});        
             }
             else{
             // let btnid = this.id;
@@ -113,7 +121,10 @@
         <!-- </form> -->
         <form action="handling.php" method="get">
             <input type="hidden" name="formmethod" value="GET">
-            <input type="text" name="id">                
+            <input type="text" name="id">
+            <input type="text" name="name">                
+            <input type="text" name="lastname">                
+            <input type="text" name="email">                
             <button type="submit">READ</button>
         </form>
         <form action="handling.php" method="get">

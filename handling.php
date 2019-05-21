@@ -24,17 +24,20 @@ if(($_GET['formmethod'] == "GET")) {
   echo json_encode($fetch);
 }
 
-elseif ((isset($_GET['id'])) && ($_GET['formmethod'] == "GET")) {
+elseif ((isset($_GET['id'])) || ($_GET['formmethod'] == "GET")) {
 
   $id = $_GET['id'];
-  $sql = "SELECT * FROM names WHERE id='$id'";
+  $name = $_GET['name'];
+  $lastname = $_GET['lastname'];
+  $email = $_GET['email'];
+  $sql = "SELECT * FROM names WHERE id='$id' OR name='$name' OR lastname='$lastname' OR email='$email'";
   $run = $conn->prepare($sql);
   $run->execute();
   $rowcount = $run->rowCount();
   $fetch = array();
 
   if($rowcount < 1) {
-    echo "Dit ID bestaat niet.";
+    echo "Deze zoekopdracht leverde geen resultaten op";
   }
   else {
     while($row = $run->fetch(PDO::FETCH_ASSOC)) {
