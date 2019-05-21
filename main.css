@@ -1,0 +1,15 @@
+#succes {
+    height: 50px;
+    border: 5px solid greenyellow;
+}
+
+.flexcontainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+div[class^="index"] {
+    padding: 25px;
+    border: 25px solid black;
+}

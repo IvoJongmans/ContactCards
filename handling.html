@@ -13,13 +13,30 @@
         
         $.getJSON("http://localhost/MariaDB-with-PHP---PDO-Version/handling.php?formmethod=GET&id=", function(data){
          console.log(data);
+        
+        
         $.each(data, function(index,value){            
-            $("#myUl").append("<li id='index" + value.id + "'>" + value.name + " ID: " + 
-            value.id + "<button id='" + value.id + "'>DELETE</button></li>");
+            $(".flexcontainer").append("<div class='index" + value.id + "'>" + "Voornaam: " + value.name + "<br/>Achternaam: " + value.lastname + "<br/>E-mail: " + value.email + "<br/> ID: " + 
+            value.id + "<br/><button id='" + value.id + "'>DELETE</button></div>");
              });
         });  
+
+        
         $(document).on('click','button',function(){
             let btnid = this.id;
+            if(btnid == "create") {
+                console.log("CREATE!");
+                let createurl = "http://localhost/MariaDB-with-PHP---PDO-Version/handling.php?formmethod=CREATE";                
+                $.ajax({
+                url: createurl, 
+                async: true, 
+                success: function(data){
+                    console.log(data);
+            }});
+            
+            }
+            else{
+            // let btnid = this.id;
             let delurl = "http://localhost/MariaDB-with-PHP---PDO-Version/handling.php?formmethod=DELETE&id=" + btnid;
             console.log(delurl);
             $.ajax({
@@ -28,26 +45,30 @@
                 async: true, 
                 success: function(result){
                 if(result == 1){
-                    $("#succes").append("Item succesvol verwijderd uit database!");
+                    $("#succes").html("Item succesvol verwijderd uit database!");
+                    $(".index" + btnid).remove();
                 }
                 else{
-                    $("#erro").append("Item niet succesvol verwijderd uit database!");
+                    $("#error").html("Item niet succesvol verwijderd uit database!");
                 }
             }});
+        }
         });
+
+        
     });   
 
     </script>
 </head>
 <body>
-        <ul id="myUl">
+        <div class="flexcontainer">
 
-        </ul>
+        </div>
 
-        <form action="handling.php" method="get">
-            <input type="hidden" name="formmethod" value="CREATE">              
-            <button type="submit">CREATE</button>
-        </form>
+        <!-- <form action="handling.php" method="get">
+            <input type="hidden" name="formmethod" value="CREATE">               -->
+            <button id="create">CREATE</button>
+        <!-- </form> -->
         <form action="handling.php" method="get">
             <input type="hidden" name="formmethod" value="GET">
             <input type="text" name="id">                
