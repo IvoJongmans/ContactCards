@@ -76,7 +76,13 @@
                 async: true, 
                 success: function(data){
                     console.log(data, "succes!");
-                }});        
+                },
+                error: function(e, data) {
+                    console.log("error" + e + data);
+                }
+                
+                
+                });        
             }
             else{
             // let btnid = this.id;

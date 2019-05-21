@@ -24,7 +24,7 @@ if(($_GET['formmethod'] == "GET")) {
   echo json_encode($fetch);
 }
 
-elseif ((isset($_GET['id'])) || ($_GET['formmethod'] == "GET")) {
+elseif ((isset($_GET['id'])) && ($_GET['formmethod'] == "GET")) {
 
   $id = $_GET['id'];
   $name = $_GET['name'];
@@ -36,16 +36,18 @@ elseif ((isset($_GET['id'])) || ($_GET['formmethod'] == "GET")) {
   $rowcount = $run->rowCount();
   $fetch = array();
 
-  if($rowcount < 1) {
-    echo "Deze zoekopdracht leverde geen resultaten op";
-  }
-  else {
+  // if($rowcount < 1) {
+  //   echo "Deze zoekopdracht leverde geen resultaten op";
+  //   echo $rowcount;
+  // }
+  // else {
     while($row = $run->fetch(PDO::FETCH_ASSOC)) {
       $fetch['names'] = $row;
+
     }
     echo json_encode($fetch);
   }
-}
+
 }
 elseif ($_GET['formmethod'] == "CREATE") {
   $sql = "INSERT INTO names (name, lastname, email) VALUES ('', '', '')";
