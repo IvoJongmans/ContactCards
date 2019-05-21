@@ -35,9 +35,9 @@
                     console.log(data);
                     $.each(data, function(index,value){            
                     $(".flexcontainer").append("<div class='index" + value.id +
-                     "'><input id='inputname" + value.id + "'" + "type='text' name='naam' placeholder='Update naam'><br/><input type='text' name='achternaam' placeholder='Update achternaam'><br/><input type='text' name='email' placeholder='Update e-mailadres'><input type='hidden' name='id' value='" + value.id + "'>" 
+                     "'><input id='inputname" + value.id + "'" + "type='text' name='naam' placeholder='Update naam' required><br/><input id='inputlastname" + value.id + "'" + "type='text' name='achternaam' placeholder='Update achternaam'><br/><input id='inputemail" + value.id + "'" + " type='text' name='email' placeholder='Update e-mailadres'><input type='hidden' name='id' value='" + value.id + "'>" 
                      + "<br/> <span>ID: " + 
-                    value.id + "</span><br/><button id='save' class='" + value.id + "'>Opslaan<br/><button id='" + value.id + "'>DELETE</button></div>");
+                    value.id + "</span><br/><button id='" + value.id + "' class='save'>Opslaan<br/><button id='" + value.id + "'>DELETE</button></div>");
                     var uniqueUD = value.id;
                     return uniqueUD;
              });
@@ -47,14 +47,28 @@
                 }   
             });
             }
-            else if(btnid == "save"){
-                console.log("test");
-         
-                let indexid = this.className;
+            else if((btnid == this.id)&&(this.className == "save")){
+                console.log("test");         
+                let indexid = this.id;
                 console.log(indexid);
-                // let id = indexid.substring(5 , 8);
                 let naam = $("#inputname" + indexid).val();
-                console.log(naam);                
+                let achternaam =  $("#inputlastname" + indexid).val();
+                let email =  $("#inputemail" + indexid).val();
+                let updateurl = "http://localhost/MariaDB-with-PHP---PDO-Version/handling.php?formmethod=UPDATE&naam=" + naam + "&achternaam=" + achternaam + "&email=" + email + "&id=" + indexid;
+                console.log(updateurl);
+                $.ajax({
+                type: "GET",
+                url: updateurl, 
+                async: true, 
+                success: function(data){
+                console.log("update gelukt!");            
+                $(".index" + indexid).replaceWith("<div class='index" + indexid + "'>" + "Voornaam: " + naam + "<br/>Achternaam: " + achternaam + "<br/>E-mail: " + email + "<br/> ID: " + 
+                indexid + "<br/><button id='" + indexid + "'>DELETE</button></div>");
+                
+            }});
+
+
+                         
             }
             else{
             // let btnid = this.id;
@@ -82,13 +96,15 @@
     </script>
 </head>
 <body>
+        <button id="create">CREATE</button>
+
         <div class="flexcontainer">
 
         </div>
 
         <!-- <form action="handling.php" method="get">
             <input type="hidden" name="formmethod" value="CREATE">               -->
-            <button id="create">CREATE</button>
+            <!-- <button id="create">CREATE</button> -->
         <!-- </form> -->
         <form action="handling.php" method="get">
             <input type="hidden" name="formmethod" value="GET">
