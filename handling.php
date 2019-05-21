@@ -45,7 +45,7 @@ elseif ((isset($_GET['id'])) && ($_GET['formmethod'] == "GET")) {
 }
 }
 elseif ($_GET['formmethod'] == "CREATE") {
-  $sql = "INSERT INTO names (name, lastname, email) VALUES ('Ivo', 'Jongmans', 'ivojongmans@gmail.com')";
+  $sql = "INSERT INTO names (name, lastname, email) VALUES ('', '', '')";
   $create = $conn->prepare($sql);
   $create->execute();
   $sqlcreateshow = "SELECT * FROM names ORDER BY id DESC LIMIT 1";

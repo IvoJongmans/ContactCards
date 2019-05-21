@@ -34,15 +34,20 @@
                 success: function(data){
                     console.log(data);
                     $.each(data, function(index,value){            
-                    $(".flexcontainer").append("<div class='index" + value.id + "'>" + "Voornaam: " + value.name + "<br/>Achternaam: " + value.lastname + "<br/>E-mail: " + value.email + "<br/> ID: " + 
-                    value.id + "<br/><button id='" + value.id + "'>DELETE</button></div>");
+                    $(".flexcontainer").append("<div class='index" + value.id +
+                     "'><input type='text' name='naam' placeholder='Update naam'><br/><input type='text' name='achternaam' placeholder='Update achternaam'><br/><input type='text' name='email' placeholder='Update e-mailadres'><input type='hidden' name='id' value='" + value.id + "'>" 
+                     + "<br/> ID: " + 
+                    value.id + "<br/><button id='save'>Opslaan<br/><button id='" + value.id + "'>DELETE</button></div>");
              });
             },
                 error: function(r, e){
                     console.log("error" + e);   
                 }   
             });
-            
+            }
+            else if(btnid == "save"){
+                console.log("Save!");
+
             }
             else{
             // let btnid = this.id;
