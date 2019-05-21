@@ -12,7 +12,8 @@ catch(PDOException $e)
       echo "Connection failed: " . $e->getMessage();
     }
 
-if(($_GET['id'] == "") && ($_GET['formmethod'] == "GET")) {
+if(($_GET['formmethod'] == "GET")) {
+  if(($_GET['id'] == "")) {
   $sql = "SELECT * FROM names";
   $run = $conn->prepare($sql);
   $run->execute();
@@ -21,6 +22,7 @@ if(($_GET['id'] == "") && ($_GET['formmethod'] == "GET")) {
     $fetch[] = $row;
   }
   echo json_encode($fetch);
+}
 }
 elseif ((isset($_GET['id'])) && ($_GET['formmethod'] == "GET")) {
 

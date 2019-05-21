@@ -28,11 +28,20 @@
                 console.log("CREATE!");
                 let createurl = "http://localhost/MariaDB-with-PHP---PDO-Version/handling.php?formmethod=CREATE";                
                 $.ajax({
+                type: "GET",
                 url: createurl, 
                 async: true, 
                 success: function(data){
                     console.log(data);
-            }});
+                    $.each(data, function(index,value){            
+                    $(".flexcontainer").append("<div class='index" + value.id + "'>" + "Voornaam: " + value.name + "<br/>Achternaam: " + value.lastname + "<br/>E-mail: " + value.email + "<br/> ID: " + 
+                    value.id + "<br/><button id='" + value.id + "'>DELETE</button></div>");
+             });
+            },
+                error: function(r, e){
+                    console.log("error" + e);   
+                }   
+            });
             
             }
             else{
