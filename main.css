@@ -11,10 +11,45 @@ body {
 	cursor: pointer;
 	outline: inherit;
 }
+
+.save {
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.delete {
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+input[type=text] {
+    background-color: white;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 3px;
+    border: none;
+  }
+
 #succes {
     height: 50px;
-    border: 5px solid greenyellow;
+    border: 5px solid #019B93;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
+    border-radius: 10px;
 }
+
+
 
 .flexcontainer{
     display: flex;

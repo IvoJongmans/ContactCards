@@ -38,9 +38,8 @@
                     $(".flexcontainer").append("<div class='index" + value.id +
                      "'><input id='inputname" + value.id + "'" + "type='text' name='naam' placeholder='Update naam' required><br/><input id='inputlastname" + value.id + "'" + "type='text' name='achternaam' placeholder='Update achternaam'><br/><input id='inputemail" + value.id + "'" + " type='text' name='email' placeholder='Update e-mailadres'><input type='hidden' name='id' value='" + value.id + "'>" 
                      + "<br/> <span>ID: " + 
-                    value.id + "</span><br/><button id='" + value.id + "' class='save'>Opslaan<br/><button id='" + value.id + "'>DELETE</button></div>");
-                    var uniqueUD = value.id;
-                    return uniqueUD;
+                    value.id + "</span><br/><button id='" + value.id + "' class='save'><img class='saveicon' src='saveicon.png' alt='#'><br/><button class='delete'  id='" + value.id + "'><img src='deleteicon.png' alt='#'></button></div>");
+                
              });
             },
                 error: function(r, e){
@@ -65,7 +64,7 @@
                 console.log("update gelukt!");            
                 $(".index" + indexid).replaceWith("<div class='index" + indexid + "'>" + "Voornaam: " + naam + "<br/>Achternaam: " + achternaam + "<br/>E-mail: " + email + "<br/> ID: " + 
                 indexid + "<br/><button id='" + indexid + "'>DELETE</button></div>");
-                
+                $("#succes").html("Item succesvol opgeslagen!");
             }});
 
 
