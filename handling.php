@@ -76,7 +76,8 @@ elseif ($_GET['formmethod'] == "CREATE") {
       $delrec = $_GET['id'];
       $sql = "DELETE FROM names WHERE id='$delrec'";
       $create = $conn->prepare($sql);
-      $create->execute();
+      $result = $create->execute();
+      echo $result;      
     }
 
 ?>

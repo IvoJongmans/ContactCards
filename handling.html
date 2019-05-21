@@ -12,7 +12,6 @@
         
         $.getJSON("http://localhost/MariaDB-with-PHP---PDO-Version/handling.php?formmethod=GET&id=", function(data){
          console.log(data);
-         console.log(data[0].name);
         $.each(data, function(index,value){            
             $("#myUl").append("<li id='index" + value.id + "'>" + value.name + " ID: " + 
             value.id + "<button id='" + value.id + "'>DELETE</button></li>");
@@ -23,15 +22,12 @@
             let delurl = "http://localhost/MariaDB-with-PHP---PDO-Version/handling.php?formmethod=DELETE&id=" + btnid;
             console.log(delurl);
             $.ajax({
-            url: delurl,
-            type: "DELETE",
-            success: function(){
-            alert('success');
-            },
-            error: function(){
-            alert('failure');
-            }
-            });
+                type: "GET",
+                url: delurl, 
+                async: true, 
+                success: function(result){
+                console.log(result);
+            }});
         });
     });   
 
