@@ -23,7 +23,7 @@ if(($_GET['formmethod'] == "GET")) {
   }
   echo json_encode($fetch);
 }
-}
+
 elseif ((isset($_GET['id'])) && ($_GET['formmethod'] == "GET")) {
 
   $id = $_GET['id'];
@@ -43,7 +43,7 @@ elseif ((isset($_GET['id'])) && ($_GET['formmethod'] == "GET")) {
     echo json_encode($fetch);
   }
 }
-
+}
 elseif ($_GET['formmethod'] == "CREATE") {
   $sql = "INSERT INTO names (name, lastname, email) VALUES ('Ivo', 'Jongmans', 'ivojongmans@gmail.com')";
   $create = $conn->prepare($sql);
