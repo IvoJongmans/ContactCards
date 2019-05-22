@@ -94,13 +94,20 @@
             }
             else if(this.className == "edit") {
                 let upindex = this.id.replace( /^\D+/g, '');
-                console.log(upindex);
-                console.log($("#edit" + upindex).parent().attr('class'));
+                let upurl = "http://localhost/MariaDB-with-PHP---PDO-Version/handling.php?formmethod=EDIT&id=" + upindex;
+                console.log(upurl);  
+                console.log("edit button");   
+                $.getJSON(upurl, function(data){
+                console.log(data); 
+                console.log(data.name);
                 $(".index" + upindex).replaceWith("<div class='index" + upindex +
-                     "'><input id='inputname" + upindex + "'" + "type='text' name='naam' placeholder='Voornaam' required><br/><input id='inputlastname" + upindex + "'" + "type='text' name='achternaam' placeholder='Achternaam'><br/><input id='inputemail" + upindex + "'" + " type='text' name='email' placeholder='E-mailadres'><input type='hidden' name='id' value='" + upindex + "'>" 
+                     "'><input id='inputname" + upindex + "'" + "type='text' name='naam' value='" + data.name + "' required><br/><input id='inputlastname" + upindex + "'" + "type='text' name='achternaam' value='" + data.lastname + "'><br/><input id='inputemail" + upindex + "'" + " type='text' name='email' value='" + data.email + "'><input type='hidden' name='id' value='" + upindex + "'>" 
                      + "<br/> <span>ID: " + 
-                    upindex + "</span><br/><button id='" + upindex + "' class='save'><img class='saveicon' src='saveicon.png' alt='#'><br/><button class='delete'  id='" + upindex + "'><img src='deleteicon.png' alt='#'></div>");
-        
+                    upindex + "</span><br/><button id='" + upindex 
+                    + "' class='save'><img class='saveicon' src='saveicon.png' alt='#'><br/><button class='delete'  id='" 
+                    + upindex + "'><img src='deleteicon.png' alt='#'></div>"); 
+                    $("#succes").html("Item succesvol aangepast!");
+                });     
             }
             else{
             // let btnid = this.id;
@@ -151,19 +158,19 @@
             <input type="text" name="email">                
             <button type="submit">READ</button>
         </form> -->
-        <form action="handling.php" method="get">
+        <!-- <form action="handling.php" method="get">
             <input type="hidden" name="formmethod" value="UPDATE">
             <input type="text" name="naam" placeholder="Update naam">                
             <input type="text" name="achternaam" placeholder="Update achternaam">                
             <input type="text" name="email" placeholder="Update e-mailadres">                
             <input type="text" name="id" placeholder="ID om te updaten">                
             <button type="submit">UPDATE</button>
-        </form>
-        <form action="handling.php" method="get">
+        </form> -->
+        <!-- <form action="handling.php" method="get">
             <input type="hidden" name="formmethod" value="DELETE">  
             <input type="text" name="id" placeholder="ID om te verwijderen">         
             <button type="submit">DELETE</button>
-        </form>
+        </form> -->
 
         <div id="error">
             

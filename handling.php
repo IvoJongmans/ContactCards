@@ -13,7 +13,7 @@ catch(PDOException $e)
     }
 
 if(($_GET['formmethod'] == "GET")) {
-  if(($_GET['name'] == "") && ($_GET['lastname'] == "")) {
+  if(($_GET['name'] == "") && ($_GET['lastname'] == "") && ((!isset($_GET['id'])))) {
   $sql = "SELECT * FROM names";
   $run = $conn->prepare($sql);
   $run->execute();
@@ -24,12 +24,17 @@ if(($_GET['formmethod'] == "GET")) {
   echo json_encode($fetch);
   }
 
+
   elseif ((isset($_GET['name'])) && ($_GET['formmethod'] == "GET")) {
 
+  
+  $lastname = $_GET['lastname'];
+  $sql = "SELECT * FROM names WHERE name LIKE '%:name%' OR lastname LIKE '%:lastname%'";
+  $search = $conn->prepare($sql);
+  $search->bindParam(':name', $name);
+  $search->bindParam(':lastname', $lastname);
   $name = $_GET['name'];
   $lastname = $_GET['lastname'];
-  $sql = "SELECT * FROM names WHERE name LIKE '%$name%' OR lastname LIKE '%$lastname%'";
-  $search = $conn->prepare($sql);
   $search->execute(); 
   $rowcount = $search->rowCount();
   $fetch = array();
@@ -38,8 +43,20 @@ if(($_GET['formmethod'] == "GET")) {
   }
   echo json_encode($fetch);
   }
-
 }
+
+elseif ($_GET['formmethod'] == "EDIT") {
+  $editid = $_GET['id'];
+  $sql = "SELECT * FROM names WHERE id='$editid'";
+  $run = $conn->prepare($sql);
+  $run->execute();
+  $fetch = array();
+  while($row = $run->fetch(PDO::FETCH_ASSOC)) {
+    $fetch = $row;
+  }
+  echo json_encode($fetch);
+  }
+
 elseif ($_GET['formmethod'] == "CREATE") {
   $sql = "INSERT INTO names (name, lastname, email) VALUES ('', '', '')";
   $create = $conn->prepare($sql);
