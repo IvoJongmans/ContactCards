@@ -27,14 +27,10 @@ if(($_GET['formmethod'] == "GET")) {
 
   elseif ((isset($_GET['name'])) && ($_GET['formmethod'] == "GET")) {
 
-  
-  $lastname = $_GET['lastname'];
-  $sql = "SELECT * FROM names WHERE name LIKE '%:name%' OR lastname LIKE '%:lastname%'";
-  $search = $conn->prepare($sql);
-  $search->bindParam(':name', $name);
-  $search->bindParam(':lastname', $lastname);
   $name = $_GET['name'];
   $lastname = $_GET['lastname'];
+  $sql = "SELECT * FROM names WHERE name LIKE '%$name%' OR lastname LIKE '%$lastname%'";
+  $search = $conn->prepare($sql);
   $search->execute(); 
   $rowcount = $search->rowCount();
   $fetch = array();
