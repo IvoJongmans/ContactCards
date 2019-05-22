@@ -1,8 +1,9 @@
 body {
     background-color: #3AAFA9;
+    color: black;
 }
 
-.createbutton {
+/* .createbutton {
     background: none;
 	color: inherit;
 	border: none;
@@ -10,7 +11,7 @@ body {
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
-}
+} */
 
 .functioncontainer {
     display: flex;
@@ -74,7 +75,7 @@ div[class^="index"] {
     width: 250px;
     margin-left: 10px;
     margin-top: 10px;
-    color: white;
+    color: black;
     font-family: 'Roboto', sans-serif;
     font-weight: bolder;
 
