@@ -47,8 +47,9 @@ if(($_GET['formmethod'] == "GET")) {
 
 elseif ($_GET['formmethod'] == "EDIT") {
   $editid = $_GET['id'];
-  $sql = "SELECT * FROM names WHERE id='$editid'";
+  $sql = "SELECT * FROM names WHERE id=:id";
   $run = $conn->prepare($sql);
+  $run->bindParam(':id', $editid);
   $run->execute();
   $fetch = array();
   while($row = $run->fetch(PDO::FETCH_ASSOC)) {
@@ -75,8 +76,12 @@ elseif ($_GET['formmethod'] == "CREATE") {
     $naam = $_GET["naam"];
     $achternaam = $_GET["achternaam"];
     $email = $_GET["email"];
-    $sql = "UPDATE names SET name='$naam', lastname='$achternaam', email='$email' WHERE id='$updateid'";
+    $sql = "UPDATE names SET name=:uname, lastname=:ulastname, email=:uemail WHERE id=:upid";
     $update = $conn->prepare($sql);
+    $update->bindParam(':upid', $updateid);
+    $update->bindParam(':uemail', $email);
+    $update->bindParam(':ulastname', $achternaam);
+    $update->bindParam(':uname', $naam);
     $update->execute();
     $sqlupdateshow = "SELECT * FROM names WHERE id='$updateid'";
     $showupdate = $conn->prepare($sqlupdateshow);
@@ -89,8 +94,9 @@ elseif ($_GET['formmethod'] == "CREATE") {
 
     elseif ($_GET['formmethod'] == "DELETE") {
       $delrec = $_GET['id'];
-      $sql = "DELETE FROM names WHERE id='$delrec'";
+      $sql = "DELETE FROM names WHERE id=:delid";
       $delete = $conn->prepare($sql);
+      $delete->bindParam(':delid', $delrec);
       $delete->execute(); 
       $rc = $delete->rowCount();
       if($rc == 1) {
