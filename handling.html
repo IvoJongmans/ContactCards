@@ -95,7 +95,11 @@
             else if(this.className == "edit") {
                 let upindex = this.id.replace( /^\D+/g, '');
                 console.log(upindex);
-                $(".index" + upindex).replaceWith("YOLO");
+                console.log($("#edit" + upindex).parent().attr('class'));
+                $(".index" + upindex).replaceWith("<div class='index" + upindex +
+                     "'><input id='inputname" + upindex + "'" + "type='text' name='naam' placeholder='Voornaam' required><br/><input id='inputlastname" + upindex + "'" + "type='text' name='achternaam' placeholder='Achternaam'><br/><input id='inputemail" + upindex + "'" + " type='text' name='email' placeholder='E-mailadres'><input type='hidden' name='id' value='" + upindex + "'>" 
+                     + "<br/> <span>ID: " + 
+                    upindex + "</span><br/><button id='" + upindex + "' class='save'><img class='saveicon' src='saveicon.png' alt='#'><br/><button class='delete'  id='" + upindex + "'><img src='deleteicon.png' alt='#'></div>");
         
             }
             else{
