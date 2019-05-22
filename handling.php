@@ -13,7 +13,7 @@ catch(PDOException $e)
     }
 
 if(($_GET['formmethod'] == "GET")) {
-  if(($_GET['id'] == "")) {
+  if(($_GET['name'] == "") && ($_GET['lastname'] == "")) {
   $sql = "SELECT * FROM names";
   $run = $conn->prepare($sql);
   $run->execute();
@@ -22,30 +22,21 @@ if(($_GET['formmethod'] == "GET")) {
     $fetch[] = $row;
   }
   echo json_encode($fetch);
-}
+  }
 
-elseif ((isset($_GET['id'])) && ($_GET['formmethod'] == "GET")) {
+  elseif ((isset($_GET['name'])) && ($_GET['formmethod'] == "GET")) {
 
-  $id = $_GET['id'];
   $name = $_GET['name'];
   $lastname = $_GET['lastname'];
-  $email = $_GET['email'];
-  $sql = "SELECT * FROM names WHERE id='$id' OR name='$name' OR lastname='$lastname' OR email='$email'";
-  $run = $conn->prepare($sql);
-  $run->execute();
-  $rowcount = $run->rowCount();
+  $sql = "SELECT * FROM names WHERE name LIKE '%$name%' OR lastname LIKE '%$lastname%'";
+  $search = $conn->prepare($sql);
+  $search->execute(); 
+  $rowcount = $search->rowCount();
   $fetch = array();
-
-  // if($rowcount < 1) {
-  //   echo "Deze zoekopdracht leverde geen resultaten op";
-  //   echo $rowcount;
-  // }
-  // else {
-    while($row = $run->fetch(PDO::FETCH_ASSOC)) {
-      $fetch['names'] = $row;
-
-    }
-    echo json_encode($fetch);
+  while($row = $search->fetch(PDO::FETCH_ASSOC)) {
+  $fetch[] = $row;
+  }
+  echo json_encode($fetch);
   }
 
 }

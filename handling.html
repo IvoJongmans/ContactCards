@@ -12,7 +12,7 @@
     <script>
     $(document).ready(function(){  
         
-        $.getJSON("http://localhost/MariaDB-with-PHP---PDO-Version/handling.php?formmethod=GET&id=", function(data){
+        $.getJSON("http://localhost/MariaDB-with-PHP---PDO-Version/handling.php?formmethod=GET&name=&lastname=", function(data){
          console.log(data);
         
         
@@ -68,7 +68,7 @@
             }
             else if(this.className == "searchbutton"){
                 let searchfor = $("#searchinput").val(); 
-                let searchurl = "http://localhost/MariaDB-with-PHP---PDO-Version/handling.php?formmethod=GET&id=" + searchfor + "&name=" + searchfor + "&lastname=" + searchfor + "&email=" + searchfor;  
+                let searchurl = "http://localhost/MariaDB-with-PHP---PDO-Version/handling.php?formmethod=GET&name=" + searchfor + "&lastname=" + searchfor;  
                 console.log(searchurl);
                 $.ajax({
                 type: "GET",
@@ -76,6 +76,14 @@
                 async: true, 
                 success: function(data){
                     console.log(data, "succes!");
+                    $(".flexcontainer").empty();
+                    $.each(data, function(index,value){            
+                    $(".flexcontainer").append("<div class='index" + value.id + "'>" + "Voornaam: " 
+                    + value.name + "<br/>Achternaam: " + value.lastname + "<br/>E-mail: " + value.email 
+                    + "<br/><span>ID: " + 
+                    value.id + "</span><br/><button id='" + value.id + "'>DELETE</button></div>");
+                    $("#succes").html("Zoekopdracht succesvol!");
+             });
                 },
                 error: function(e, data) {
                     console.log("error" + e + data);
