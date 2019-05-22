@@ -18,7 +18,7 @@
         
         $.each(data, function(index,value){            
             $(".flexcontainer").append("<div class='index" + value.id + "'>" + "Voornaam: " + value.name + "<br/>Achternaam: " + value.lastname + "<br/>E-mail: " + value.email + "<br/><span>ID: " + 
-            value.id + "</span><br/><button id='" + value.id + "'>DELETE</button><button class='edit'>EDIT</button></div>");
+            value.id + "</span><br/><button id='" + value.id + "'>DELETE</button><button id='edit" + value.id + "'  class='edit'>EDIT</button></div>");
              });
         });  
 
@@ -62,7 +62,7 @@
                 success: function(data){
                 console.log("update gelukt!");            
                 $(".index" + indexid).replaceWith("<div class='index" + indexid + "'>" + "Voornaam: " + naam + "<br/>Achternaam: " + achternaam + "<br/>E-mail: " + email + "<br/> <span>ID: " + 
-                indexid + "</span><br/><button id='" + indexid + "'>DELETE</button></button><button class='edit'>EDIT</button></div>");
+                indexid + "</span><br/><button id='" + indexid + "'>DELETE</button></button><button id='edit" + indexid + "' class='edit'>EDIT</button></div>");
                 $("#succes").html("Item succesvol opgeslagen!");
             }});                         
             }
@@ -81,7 +81,7 @@
                     $(".flexcontainer").append("<div class='index" + value.id + "'>" + "Voornaam: " 
                     + value.name + "<br/>Achternaam: " + value.lastname + "<br/>E-mail: " + value.email 
                     + "<br/><span>ID: " + 
-                    value.id + "</span><br/><button id='" + value.id + "'>DELETE</button></div>");
+                    value.id + "</span><br/><button id='" + value.id + "'>DELETE</button><button id='edit" + value.id + "'  class='edit'>EDIT</button></div>");
                     $("#succes").html("Zoekopdracht succesvol!");
              });
                 },
@@ -93,7 +93,10 @@
                 });        
             }
             else if(this.className == "edit") {
-                console.log("edit!");
+                let upindex = this.id.replace( /^\D+/g, '');
+                console.log(upindex);
+                $(".index" + upindex).replaceWith("YOLO");
+        
             }
             else{
             // let btnid = this.id;
