@@ -6,7 +6,7 @@
         
         $.each(data, function(index,value){            
             $(".flexcontainer").append("<div class='index" + value.id + "'>" + "Voornaam: " + value.name + "<br/>Achternaam: " + value.lastname + "<br/>E-mail: " + value.email + "<br/><span>ID: " + 
-            value.id + "</span><br/><button id='" + value.id + "'>DELETE</button><button id='edit" + value.id + "'  class='edit'>EDIT</button></div>");
+            value.id + "</span><br/><div><button id='edit" + value.id + "'  class='edit'><i class='far fa-edit fa-3x'></i></button><button id='" + value.id + "' class='delete'><i class='far fa-trash-alt fa-3x'></i></button></div></div>");
              });
         });  
 
@@ -26,7 +26,7 @@
                     $(".flexcontainer").append("<div class='index" + value.id +
                      "'><input id='inputname" + value.id + "'" + "type='text' name='naam' placeholder='Voornaam' required><br/><input id='inputlastname" + value.id + "'" + "type='text' name='achternaam' placeholder='Achternaam'><br/><input id='inputemail" + value.id + "'" + " type='text' name='email' placeholder='E-mailadres'><input type='hidden' name='id' value='" + value.id + "'>" 
                      + "<br/> <span>ID: " + 
-                    value.id + "</span><br/><button id='" + value.id + "' class='save'><img class='saveicon' src='saveicon.png' alt='#'><br/><button class='delete'  id='" + value.id + "'><img src='deleteicon.png' alt='#'></div>");
+                    value.id + "</span><div><button id='" + value.id + "' class='save'><i class='far fa-save fa-3x'></i></button><button class='delete'  id='" + value.id + "'><i class='far fa-trash-alt fa-3x'></i></button></div></div>");
                     $("#succes").html("Item succesvol aagemaakt!");
              });
             },
@@ -50,7 +50,7 @@
                 success: function(data){
                 console.log("update gelukt!");            
                 $(".index" + indexid).replaceWith("<div class='index" + indexid + "'>" + "Voornaam: " + naam + "<br/>Achternaam: " + achternaam + "<br/>E-mail: " + email + "<br/> <span>ID: " + 
-                indexid + "</span><br/><button id='" + indexid + "'>DELETE</button></button><button id='edit" + indexid + "' class='edit'>EDIT</button></div>");
+                indexid + "</span><div><br/><button id='edit" + indexid + "' class='edit'><i class='far fa-edit fa-3x'></i></button><button id='" + indexid + "' class='delete'><i class='far fa-trash-alt fa-3x'></button></button></div></div>");
                 $("#succes").html("Item succesvol opgeslagen!");
             }});                         
             }
@@ -63,13 +63,13 @@
                 url: searchurl, 
                 async: true, 
                 success: function(data){
-                    console.log(data, "succes!");
+                    console.log(data, "Succes!");
                     $(".flexcontainer").empty();
                     $.each(data, function(index,value){            
                     $(".flexcontainer").append("<div class='index" + value.id + "'>" + "Voornaam: " 
                     + value.name + "<br/>Achternaam: " + value.lastname + "<br/>E-mail: " + value.email 
                     + "<br/><span>ID: " + 
-                    value.id + "</span><br/><button id='" + value.id + "'>DELETE</button><button id='edit" + value.id + "'  class='edit'>EDIT</button></div>");
+                    value.id + "</span><br/><div><button id='edit" + value.id + "' class='edit'><i class='far fa-edit fa-3x'></i></button><button id='" + value.id + "' class='delete'><i class='far fa-trash-alt fa-3x'></i></button></div></div>");
                     $("#succes").html("Zoekopdracht succesvol!");
              });
                 },
@@ -91,9 +91,9 @@
                 $(".index" + upindex).replaceWith("<div class='index" + upindex +
                      "'><input id='inputname" + upindex + "'" + "type='text' name='naam' value='" + data.name + "' required><br/><input id='inputlastname" + upindex + "'" + "type='text' name='achternaam' value='" + data.lastname + "'><br/><input id='inputemail" + upindex + "'" + " type='text' name='email' value='" + data.email + "'><input type='hidden' name='id' value='" + upindex + "'>" 
                      + "<br/> <span>ID: " + 
-                    upindex + "</span><br/><button id='" + upindex 
-                    + "' class='save'><img class='saveicon' src='saveicon.png' alt='#'><br/><button class='delete'  id='" 
-                    + upindex + "'><img src='deleteicon.png' alt='#'></div>"); 
+                    upindex + "</span><div><button id='" + upindex 
+                    + "' class='save'><i class='far fa-save fa-3x'></i></button><button class='delete'  id='" 
+                    + upindex + "'><i class='far fa-trash-alt fa-3x'></i></button></div></div>"); 
                     $("#succes").html("Item succesvol aangepast!");
                 });     
             }
