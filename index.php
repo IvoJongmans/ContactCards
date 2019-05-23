@@ -22,8 +22,6 @@ catch(PDOException $e)
         echo $row['id']." ";
         echo $row['email']."<br />\n";
     }
-
-
 ?>
 
 <a href="create.html">Voeg namen toe</a>
